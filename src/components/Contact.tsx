@@ -1,16 +1,16 @@
-import { useState, FormEvent } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { translations } from '../translations';
+import { useState, FormEvent } from "react";
+import { Phone, MapPin, Send, Instagram } from "lucide-react";
+import { translations } from "../translations";
 
 interface ContactProps {
-  language: 'uz' | 'ru' | 'en';
+  language: "uz" | "ru" | "en";
 }
 
 const Contact = ({ language }: ContactProps) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -20,27 +20,45 @@ const Contact = ({ language }: ContactProps) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setIsSuccess(false);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const res = await fetch("/api/sendMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    setFormData({ name: '', email: '', message: '' });
-
-    setTimeout(() => setIsSuccess(false), 3000);
+      if (res.ok) {
+        setIsSuccess(true);
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        console.error("Telegram send failed");
+        alert("Failed to send message");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Something went wrong");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section id="contact" className="py-32 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-bold text-black mb-6">{t.contact.title}</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t.contact.subtitle}</p>
+          <h2 className="text-5xl md:text-6xl font-bold text-black mb-6">
+            {t.contact.title}
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            {t.contact.subtitle}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
           <div className="space-y-8">
-            <div className="flex items-start space-x-6 group">
+            {/* <div className="flex items-start space-x-6 group">
               <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                 <Mail className="text-white" size={24} />
               </div>
@@ -48,7 +66,7 @@ const Contact = ({ language }: ContactProps) => {
                 <h3 className="text-xl font-bold text-black mb-2">Email</h3>
                 <p className="text-gray-600">{t.contact.info.email}</p>
               </div>
-            </div>
+            </div> */}
 
             <div className="flex items-start space-x-6 group">
               <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -56,7 +74,8 @@ const Contact = ({ language }: ContactProps) => {
               </div>
               <div>
                 <h3 className="text-xl font-bold text-black mb-2">Phone</h3>
-                <p className="text-gray-600">{t.contact.info.phone}</p>
+                <a href="tel:+998887979555">+998 88 797 95 55</a>
+                {/* <p className="text-gray-600">{t.contact.info.phone}</p> */}
               </div>
             </div>
 
@@ -69,6 +88,54 @@ const Contact = ({ language }: ContactProps) => {
                 <p className="text-gray-600">{t.contact.info.address}</p>
               </div>
             </div>
+
+            <div className="flex items-start space-x-6 group">
+              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <a
+                  href="https://t.me/+5AbaGvHY1ztjMWRi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-blue-400 transition-colors"
+                  aria-label="Telegram"
+                >
+                  <Send size={26} />
+                </a>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-black mb-2">Telegram</h3>
+                <a
+                  href="https://t.me/+5AbaGvHY1ztjMWRi"
+                  target="_blank"
+                  className="text-gray-600"
+                >
+                  Telegram channel
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-6 group">
+              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <a
+                  href="https://www.instagram.com/sheykh.agency"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-pink-400 transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={26} />
+                </a>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-black mb-2">Instagram</h3>
+                <a
+                  href="https://www.instagram.com/sheykh.agency"
+                  target="_blank"
+                  className="text-gray-600"
+                >
+                  sheykh.agency
+                </a>
+              </div>
+            </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -77,7 +144,9 @@ const Contact = ({ language }: ContactProps) => {
                 type="text"
                 placeholder={t.contact.form.name}
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 required
                 className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black focus:outline-none transition-colors"
               />
@@ -88,7 +157,9 @@ const Contact = ({ language }: ContactProps) => {
                 type="email"
                 placeholder={t.contact.form.email}
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 required
                 className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black focus:outline-none transition-colors"
               />
@@ -98,7 +169,9 @@ const Contact = ({ language }: ContactProps) => {
               <textarea
                 placeholder={t.contact.form.message}
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
                 required
                 rows={6}
                 className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black focus:outline-none transition-colors resize-none"

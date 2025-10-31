@@ -7,10 +7,11 @@ export const translations = {
       contact: 'Contact',
     },
     hero: {
+      titleNew: "Build Your Brand with Us",
       title: 'Where Vision',
       titleHighlight: 'Meets Creation',
       subtitle: 'Transforming ideas into digital masterpieces. We craft stories, elevate brands, and build experiences that resonate.',
-      cta: 'Start Your Journey',
+      cta: 'Contact us',
       scroll: 'Scroll to explore',
     },
     services: {
@@ -79,10 +80,11 @@ export const translations = {
       contact: 'Контакты',
     },
     hero: {
+      titleNew: "Создайте свой бренд вместе с нами",
       title: 'Где Видение',
       titleHighlight: 'Встречает Творчество',
       subtitle: 'Превращаем идеи в цифровые шедевры. Мы создаем истории, возвышаем бренды и строим впечатления, которые находят отклик.',
-      cta: 'Начать Путешествие',
+      cta: 'Свяжитесь с нами',
       scroll: 'Прокрутите для изучения',
     },
     services: {
@@ -151,11 +153,13 @@ export const translations = {
       contact: 'Aloqa',
     },
     hero: {
+      titleNew: "Brendingizni biz bilan birgalikda quring",
       title: 'Tasavvur',
       titleHighlight: 'Ijodga Aylanganda',
+      subtitleNew: "Zamonaviy media, texnologiya va dizayn uyg‘unligi.",
       subtitle: 'G\'oyalarni raqamli asarlarga aylantiramiz. Biz hikoyalar yaratamiz, brendlarni ko\'taramiz va ta\'sir qoldiradigan tajribalar quramiz.',
-      cta: 'Sayohatingizni Boshlang',
-      scroll: 'Kashf qilish uchun aylantiring',
+      cta: 'Biz bilan bog\'laning',
+      scroll: 'Kashf qilish uchun bosing',
     },
     services: {
       title: 'Biz Nima Qilamiz',

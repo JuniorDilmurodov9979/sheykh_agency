@@ -1,7 +1,7 @@
-import { translations } from '../translations';
-
+import { translations } from "../translations";
+import logo from "../assets/logo_sheykh.jpg";
 interface FooterProps {
-  language: 'uz' | 'ru' | 'en';
+  language: "uz" | "ru" | "en";
 }
 
 const Footer = ({ language }: FooterProps) => {
@@ -14,9 +14,13 @@ const Footer = ({ language }: FooterProps) => {
         <div className="flex flex-col items-center text-center space-y-6">
           <div className="flex items-center space-x-2">
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-              <span className="text-black font-bold text-xl">S</span>
+              {/* <span className="text-black font-bold text-xl">S</span> */}
+              <img className="rounded-full" src={logo} alt="logo" />
             </div>
-            <span className="font-bold text-2xl tracking-tight">Sheykh Agency</span>
+
+            <span className="font-bold text-2xl tracking-tight">
+              Sheykh Agency
+            </span>
           </div>
 
           <p className="text-gray-400 max-w-md">{t.footer.tagline}</p>

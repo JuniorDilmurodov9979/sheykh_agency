@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { ChevronDown, Sparkles } from 'lucide-react';
-import { translations } from '../translations';
+import { useEffect, useState } from "react";
+import { ChevronDown, Sparkles } from "lucide-react";
+import { translations } from "../translations";
 
 interface HeroProps {
-  language: 'uz' | 'ru' | 'en';
+  language: "uz" | "ru" | "en";
 }
 
 const Hero = ({ language }: HeroProps) => {
@@ -14,15 +14,15 @@ const Hero = ({ language }: HeroProps) => {
     setIsVisible(true);
   }, []);
 
-  const scrollToServices = () => {
-    const element = document.getElementById('services');
+  const scrollToSection = (name: string) => {
+    const element = document.getElementById(name);
     if (element) {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
@@ -33,35 +33,39 @@ const Hero = ({ language }: HeroProps) => {
 
       <div
         className={`container mx-auto px-6 text-center relative z-10 transition-all duration-1000 transform ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <div className="inline-flex items-center space-x-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-6 py-2 mb-8">
+        {/* <div className="inline-flex items-center space-x-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-6 py-2 mb-8">
           <Sparkles size={16} className="text-white" />
           <span className="text-white/80 text-sm font-medium">Digital Excellence</span>
-        </div>
+        </div> */}
 
         <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight">
-          {t.hero.title}
+          {t.hero.titleNew}
           <br />
           <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-            {t.hero.titleHighlight}
+            {/* {t.hero.titleHighlight} */}
           </span>
         </h1>
 
         <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-          {t.hero.subtitle}
+          {/* {t.hero.subtitle} */}
+          {t.hero.subtitleNew}
         </p>
 
         <button
-          onClick={scrollToServices}
+          onClick={() => scrollToSection("contact")}
           className="group bg-white text-black px-10 py-4 rounded-full font-medium text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl"
         >
           {t.hero.cta}
-        </button>
+        </button> 
 
         <div className="mt-20 animate-bounce">
-          <button onClick={scrollToServices} className="flex flex-col items-center space-y-2 text-white/60 hover:text-white transition-colors mx-auto">
+          <button
+            onClick={() => scrollToSection("services")}
+            className="flex flex-col items-center space-y-2 text-white/60 hover:text-white transition-colors mx-auto"
+          >
             <span className="text-sm font-medium">{t.hero.scroll}</span>
             <ChevronDown size={24} />
           </button>

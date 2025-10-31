@@ -1,8 +1,8 @@
-import { Share2, FileText, Film, User, Globe } from 'lucide-react';
-import { translations } from '../translations';
+import { Share2, FileText, Film, User, Globe } from "lucide-react";
+import { translations } from "../translations";
 
 interface ServicesProps {
-  language: 'uz' | 'ru' | 'en';
+  language: "uz" | "ru" | "en";
 }
 
 const Services = ({ language }: ServicesProps) => {
@@ -14,8 +14,12 @@ const Services = ({ language }: ServicesProps) => {
     <section id="services" className="py-32 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-bold text-black mb-6">{t.services.title}</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t.services.subtitle}</p>
+          <h2 className="text-5xl md:text-6xl font-bold text-black mb-6">
+            {t.services.title}
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            {t.services.subtitle}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -28,7 +32,10 @@ const Services = ({ language }: ServicesProps) => {
               >
                 <div className="mb-6">
                   <div className="w-14 h-14 bg-black group-hover:bg-white rounded-2xl flex items-center justify-center transition-colors duration-500">
-                    <Icon className="text-white group-hover:text-black transition-colors duration-500" size={28} />
+                    <Icon
+                      className="text-white group-hover:text-black transition-colors duration-500"
+                      size={28}
+                    />
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold text-black group-hover:text-white mb-4 transition-colors duration-500">
