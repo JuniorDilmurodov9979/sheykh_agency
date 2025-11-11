@@ -14,7 +14,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ error: "Missing bot credentials" });
   }
 
-  const text = `📩 New message from your website:\n\n👤 Name: ${name}\n📧 Email: ${email}\n💬 Message: ${message}`;
+  const text = `📩 Yangi xabar keldi websitedan:\n\n👤 Name: ${name}\n📧 Email: ${email}\n💬 Message: ${message}`;
 
   try {
     const response = await fetch(

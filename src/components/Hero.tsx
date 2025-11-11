@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { translations } from "../translations";
 
 interface HeroProps {
@@ -41,7 +41,7 @@ const Hero = ({ language }: HeroProps) => {
           <span className="text-white/80 text-sm font-medium">Digital Excellence</span>
         </div> */}
 
-        <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl lg:text-7xl font-bold text-white mb-6 leading-tight">
           {t.hero.titleNew}
           <br />
           <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
@@ -49,9 +49,9 @@ const Hero = ({ language }: HeroProps) => {
           </span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-          {/* {t.hero.subtitle} */}
-          {t.hero.subtitleNew}
+        <p className="text-lg lg:text-xl  text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+          {t.hero.subtitle}
+          {/* {t.hero.subtitleNew} */}
         </p>
 
         <button
@@ -59,7 +59,7 @@ const Hero = ({ language }: HeroProps) => {
           className="group bg-white text-black px-10 py-4 rounded-full font-medium text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl"
         >
           {t.hero.cta}
-        </button> 
+        </button>
 
         <div className="mt-20 animate-bounce">
           <button

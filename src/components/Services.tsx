@@ -24,7 +24,7 @@ const Services = ({ language }: ServicesProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {t.services.items.map((service, index) => {
-            const Icon = icons[index];
+            const Icon = icons[index] || Share2;
             return (
               <div
                 key={index}

@@ -1,6 +1,8 @@
 import { useState, FormEvent } from "react";
 import { Phone, MapPin, Send, Instagram } from "lucide-react";
 import { translations } from "../translations";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ContactProps {
   language: "uz" | "ru" | "en";
@@ -11,6 +13,8 @@ const Contact = ({ language }: ContactProps) => {
     name: "",
     email: "",
     message: "",
+    telegram: "",
+    tel: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -19,6 +23,26 @@ const Contact = ({ language }: ContactProps) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    if (!formData.name.trim()) {
+      toast.error("Please enter your name.");
+      return;
+    }
+
+    if (!formData.message.trim()) {
+      toast.error("Please enter your message.");
+      return;
+    }
+
+    if (
+      !formData.email.trim() &&
+      !formData.telegram.trim() &&
+      !formData.tel.trim()
+    ) {
+      toast.error("Please fill at least one contact field (Email, Telegram, or Phone).");
+      return;
+    }
+
     setIsSubmitting(true);
     setIsSuccess(false);
 
@@ -30,15 +54,20 @@ const Contact = ({ language }: ContactProps) => {
       });
 
       if (res.ok) {
+        toast.success("Message sent successfully!");
         setIsSuccess(true);
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+          telegram: "",
+          tel: "",
+        });
       } else {
-        console.error("Telegram send failed");
-        alert("Failed to send message");
+        toast.error("Failed to send message.");
       }
-    } catch (err) {
-      console.error("Error:", err);
-      alert("Something went wrong");
+    } catch (error) {
+      toast.error("Something went wrong.");
     } finally {
       setIsSubmitting(false);
     }
@@ -58,29 +87,18 @@ const Contact = ({ language }: ContactProps) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
           <div className="space-y-8">
-            {/* <div className="flex items-start space-x-6 group">
-              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <Mail className="text-white" size={24} />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-black mb-2">Email</h3>
-                <p className="text-gray-600">{t.contact.info.email}</p>
-              </div>
-            </div> */}
-
             <div className="flex items-start space-x-6 group">
-              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <Phone className="text-white" size={24} />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-black mb-2">Phone</h3>
                 <a href="tel:+998887979555">+998 88 797 95 55</a>
-                {/* <p className="text-gray-600">{t.contact.info.phone}</p> */}
               </div>
             </div>
 
             <div className="flex items-start space-x-6 group">
-              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <MapPin className="text-white" size={24} />
               </div>
               <div>
@@ -90,13 +108,12 @@ const Contact = ({ language }: ContactProps) => {
             </div>
 
             <div className="flex items-start space-x-6 group">
-              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center transition-transform duration-300">
                 <a
                   href="https://t.me/+5AbaGvHY1ztjMWRi"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-blue-400 transition-colors"
-                  aria-label="Telegram"
+                  className="text-white"
                 >
                   <Send size={26} />
                 </a>
@@ -114,13 +131,12 @@ const Contact = ({ language }: ContactProps) => {
             </div>
 
             <div className="flex items-start space-x-6 group">
-              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center transition-transform duration-300">
                 <a
                   href="https://www.instagram.com/sheykh.agency"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-pink-400 transition-colors"
-                  aria-label="Instagram"
+                  className="text-white"
                 >
                   <Instagram size={26} />
                 </a>
@@ -139,64 +155,60 @@ const Contact = ({ language }: ContactProps) => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <input
-                type="text"
-                placeholder={t.contact.form.name}
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                required
-                className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black focus:outline-none transition-colors"
-              />
-            </div>
+            <input
+              type="text"
+              placeholder={t.contact.form.name}
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
+              className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black transition-colors"
+            />
 
-            <div>
-              <input
-                type="email"
-                placeholder={t.contact.form.email}
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                required
-                className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black focus:outline-none transition-colors"
-              />
-            </div>
+            <input
+              type="email"
+              placeholder={t.contact.form.email}
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black transition-colors"
+            />
 
-            <div>
-              <textarea
-                placeholder={t.contact.form.message}
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-                required
-                rows={6}
-                className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black focus:outline-none transition-colors resize-none"
-              />
-            </div>
+            <input
+              type="text"
+              placeholder="Telegram Username"
+              value={formData.telegram}
+              onChange={(e) => setFormData({ ...formData, telegram: e.target.value })}
+              className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black transition-colors"
+            />
+
+            <input
+              type="tel"
+              placeholder="Telefon number"
+              value={formData.tel}
+              onChange={(e) => setFormData({ ...formData, tel: e.target.value })}
+              className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black transition-colors"
+            />
+
+            <textarea
+              placeholder={t.contact.form.message}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              required
+              rows={6}
+              className="w-full px-6 py-4 rounded-2xl bg-white border border-gray-200 focus:border-black transition-colors resize-none"
+            />
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-black text-white px-8 py-4 rounded-2xl font-medium text-lg hover:bg-gray-800 transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-black text-white px-8 py-4 rounded-2xl font-medium text-lg hover:bg-gray-800 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50"
             >
-              {isSubmitting ? (
-                <span>{t.contact.form.sending}</span>
-              ) : isSuccess ? (
-                <span>{t.contact.form.success}</span>
-              ) : (
-                <>
-                  <span>{t.contact.form.send}</span>
-                  <Send size={20} />
-                </>
-              )}
+              {isSubmitting ? t.contact.form.sending : t.contact.form.send}
             </button>
           </form>
         </div>
       </div>
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </section>
   );
 };
