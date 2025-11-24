@@ -1,7 +1,20 @@
-import type { NextConfig } from "next";
+import { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  turbopack: {
+    rules: {
+      "**/*.{tsx,jsx}": {
+        loaders: [
+          {
+            loader: "@locator/webpack-loader",
+            options: { env: "development" },
+          },
+        ],
+      },
+    },
+  },
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

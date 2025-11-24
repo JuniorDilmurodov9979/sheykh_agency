@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "services": "Xizmatlar",
+    "work": "Ishlar",
+    "team": "Jamoa",
+    "contact": "Aloqa"
+  },
+  "hero": {
+    "titleNew": "Brendingizni biz bilan birgalikda quring",
+    "subtitle": "Brendingizni ilhomlantiruvchi g‘oya va aniq strategiya bilan jonlantiramiz.",
+    "cta": "Biz bilan bog'laning",
+    "scroll": "Kashf qilish uchun bosing"
+  },
+  "services": {
+    "title": "Biz Nima Qilamiz",
+    "subtitle": "Raqamli platformalarda samarali va kreativ yechimlar",
+    "about": "Biz reklama roliklari, Reels, TikTok, Shorts, intervyular va vloglar orqali brendlarga jon bag‘ishlaymiz. Lekin biz bundan ham ko‘prog‘ini qilamiz. Shaxsiy brendingizni yuritamiz, SMM va Target orqali sizni auditoriyangizga yetkazamiz. Face Brand, mobilografiya, sayt yaratish va ssenariy yozish — hammasi bir joyda. Biz uchun bu shunchaki video emas. Bu — hissiyot, g‘oya va harakatning kuchi.",
+    "items": {
+      "smm": {
+        "name": "SMM Xizmati",
+        "description": "Sahifangizni professional tarzda rivojlantiramiz — kontent reja tuzamiz, post va storylar uchun sifatli material tayyorlaymiz va auditoriyangizni barqaror o‘stirib boramiz."
+      },
+      "scenario": {
+        "name": "Ssenariy Yaratish",
+        "description": "Videolaringiz uchun qiziqarli, tushunarli va e’tibor tortadigan ssenariylar yozamiz. G‘oyadan tortib tayyor matngacha — hammasi bir joyda."
+      },
+      "montaj": {
+        "name": "Video Montaj",
+        "description": "Video materiallaringizni yuqori sifatda tahrirlaymiz — keraksiz qismlarni olib tashlaymiz, chiroyli effektlar qo‘shamiz va tayyor holatda topshiramiz."
+      },
+      "brandface": {
+        "name": "Brend Yuzi Tanlash",
+        "description": "Biznesingiz uchun eng mos obraz yoki odamni topamiz va uni auditoriyaga to‘g‘ri, ishonchli va chiroyli uslubda tanishtirishda yordam beramiz."
+      },
+      "website": {
+        "name": "Veb-sayt Tayyorlash",
+        "description": "Biznesingiz uchun zamonaviy, tez va qulay veb-sayt yaratamiz. Dizayn, funksiyalar va UX — barchasi sizning talablaringiz asosida."
+      },
+      "target": {
+        "name": "Target Reklama Xizmati",
+        "description": "Auditoriyangizni aniq nishonga olgan samarali reklamalar yaratamiz. Kampaniya sozlash, optimizatsiya va natijani oshirish — hammasi bizdan."
+      }
+    }
+  },
+  "work": {
+    "title": "Bizning Ishlarimiz",
+    "subtitle": "Har bir loyiha – natija va g‘oyaning ifodasi",
+    "viewProject": "Loyihani Ko'rish"
+  },
+  "team": {
+    "title": "Bizning Jamoa",
+    "subtitle": "Har bir muvaffaqiyatning orqasida bizning jamoamiz turadi",
+    "role": "Lavozim"
+  },
+  "contact": {
+    "title": "Keling, Birgalikda Yarataylik",
+    "subtitle": "Tasavvuringizni hayotga tatbiq etishga tayyormisiz? Biz yordam berish uchun shu yerdamiz.",
+    "form": {
+      "name": "Ismingiz",
+      "email": "Email Manzil",
+      "message": "Loyihangiz haqida gapirib bering",
+      "send": "Xabar Yuborish",
+      "sending": "Yuborilmoqda...",
+      "success": "Xabar muvaffaqiyatli yuborildi!"
+    },
+    "info": {
+      "address": "Toshkent, O'zbekiston"
+    },
+    "toastMessages": {
+      "success": "Xabar muvaffaqiyatli yuborildi!",
+      "error": "Xabarni yuborish muvaffaqiyatsiz tugadi.",
+      "validation": "Iltimos, kamida bitta aloqa maydonini to‘ldiring (Email, Telegram yoki telefon)."
+    }
+  },
+  "footer": {
+    "tagline": "2024 yildan beri raqamli mukammallikni yaratamiz",
+    "rights": "Barcha huquqlar himoyalangan."
+  }
+}

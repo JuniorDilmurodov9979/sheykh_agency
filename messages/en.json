@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "services": "Services",
+    "work": "Projects",
+    "team": "Team",
+    "contact": "Contact"
+  },
+  "hero": {
+    "titleNew": "Build Your Brand With Us",
+    "subtitle": "We bring your brand to life with an inspiring idea and a clear strategy.",
+    "cta": "Contact Us",
+    "scroll": "Click to Explore"
+  },
+  "services": {
+    "title": "What We Do",
+    "subtitle": "Effective and creative solutions on digital platforms",
+    "about": "We bring brands to life through commercials, Reels, TikTok, Shorts, interviews, and vlogs. But we do much more than that. We manage your personal branding, help you reach your audience through SMM and targeted ads. Face Brand, mobile videography, website creation, and scriptwriting — all in one place. For us, this is not just video. This is emotion, an idea, and the power of movement.",
+    "items": {
+      "smm": {
+        "name": "SMM Service",
+        "description": "We develop your page professionally — create a content plan, prepare high-quality materials for posts and stories, and continuously grow your audience."
+      },
+      "scenario": {
+        "name": "Scriptwriting",
+        "description": "We write interesting, clear, and attention-grabbing scripts for your videos — from the idea to the final text."
+      },
+      "montaj": {
+        "name": "Video Editing",
+        "description": "We edit your video materials with high quality — remove unnecessary parts, add beautiful effects, and deliver a ready-to-use final video."
+      },
+      "brandface": {
+        "name": "Brand Face Selection",
+        "description": "We help you find the most suitable persona or image for your business and present it to your audience correctly, confidently, and beautifully."
+      },
+      "website": {
+        "name": "Website Development",
+        "description": "We create a modern, fast, and user-friendly website for your business. Design, features, and UX — all based on your requirements."
+      },
+      "target": {
+        "name": "Targeted Advertising",
+        "description": "We create effective ad campaigns precisely targeting your audience. Campaign setup, optimization, and performance enhancement — all from us."
+      }
+    }
+  },
+  "work": {
+    "title": "Our Projects",
+    "subtitle": "Every project is an expression of idea and result",
+    "viewProject": "View Project"
+  },
+  "team": {
+    "title": "Our Team",
+    "subtitle": "Behind every success stands our team",
+    "role": "Position"
+  },
+  "contact": {
+    "title": "Let's Create Together",
+    "subtitle": "Ready to bring your vision to life? We're here to help.",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "message": "Tell us about your project",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Message successfully sent!"
+    },
+    "info": {
+      "address": "Tashkent, Uzbekistan"
+    },
+    "toastMessages": {
+      "success": "Message successfully sent!",
+      "error": "Failed to send message.",
+      "validation": "Please fill in at least one contact field (Email, Telegram, or phone)."
+    }
+  },
+  "footer": {
+    "tagline": "Creating digital excellence since 2024",
+    "rights": "All rights reserved."
+  }
+}
