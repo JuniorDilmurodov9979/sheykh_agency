@@ -17,17 +17,18 @@ const Contact = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const t = useTranslations("contact");
+  const tToast = useTranslations("toast");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!formData.name.trim()) {
-      toast.error("Please enter your name.");
+      toast.error(tToast("toastMessages.errorName"));
       return;
     }
 
     if (!formData.message.trim()) {
-      toast.error("Please enter your message.");
+      toast.error(tToast("toastMessages.errorMessage"));
       return;
     }
 
@@ -36,9 +37,7 @@ const Contact = () => {
       !formData.telegram.trim() &&
       !formData.tel.trim()
     ) {
-      toast.error(
-        "Please fill at least one contact field (Email, Telegram, or Phone)."
-      );
+      toast.error(tToast("toastMessages.validation"));
       return;
     }
 
@@ -46,14 +45,31 @@ const Contact = () => {
     setIsSuccess(false);
 
     try {
-      const res = await fetch("/api/sendMessage", {
+      const botToken = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
+      const chatId = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
+
+      const text = `
+Ism 👤: ${formData.name}
+Email 📧: ${formData.email || "-"}
+Telegram 📩: ${formData.telegram || "-"}
+Telefon Raqam 📞: ${formData.tel || "-"}
+Xabar 📝: ${formData.message}
+  `;
+
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+      const res = await fetch(telegramUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+          parse_mode: "HTML",
+        }),
       });
 
       if (res.ok) {
-        toast.success("Message sent successfully!");
+        toast.success(tToast("toastMessages.success"));
         setIsSuccess(true);
         setFormData({
           name: "",

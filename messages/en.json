@@ -50,7 +50,16 @@
   "team": {
     "title": "Our Team",
     "subtitle": "Behind every success stands our team",
-    "role": "Position"
+    "role": "Position",
+    "teamMembers": {
+      "director": "Creative Director",
+      "brandFace": "Brand Face",
+      "model": "Model",
+      "smm": "SMM Specialist",
+      "scenario": "Script Writer",
+      "videoEditor": "Video Editor",
+      "webdev": "Frontend Developer"
+    }
   },
   "contact": {
     "title": "Let's Create Together",

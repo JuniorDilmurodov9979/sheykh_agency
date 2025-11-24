@@ -1,9 +1,9 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-const DirectorImage = "/images/director_image.png";
-const brandFace1 = "/images/brand_face_1.jpeg";
-const brandFace2 = "/images/brand_face_2.jpeg";
+const DirectorImage = "/images/laziz_pic.jpg";
+const brandFace1 = "/images/brand_face_1.JPG";
+const brandFace2 = "/images/model_pic.jpg";
 const laziz2Img = "/images/laziz_2.jpg";
 const smm_guy = "/images/Smm_guy.jpg";
 const scenario_guy = "/images/scenario_guy.jpg";
@@ -15,12 +15,12 @@ const Team = () => {
   const teamMembers = [
     {
       name: "Lazizbek Suyarov",
-      role: "Ijodiy Rahbar",
+      role: t("teamMembers.director"),
       image: DirectorImage,
     },
     {
       name: "Quvonchbek Gaybullayev",
-      role: "Brend Yuzi",
+      role: t("teamMembers.brandFace"),
       image: brandFace1,
     },
     {
@@ -30,22 +30,22 @@ const Team = () => {
     },
     {
       name: "Sunnatbek Axrorov",
-      role: "SMM Mutaxassisi",
+      role: t("teamMembers.smm"),
       image: smm_guy,
     },
     {
       name: "Sunnatbek Axrorov",
-      role: "Ssenariychi",
+      role: t("teamMembers.scenario"),
       image: scenario_guy,
     },
     {
       name: "Lazizbek Suyarov",
-      role: "Video Montaj",
+      role: t("teamMembers.videoEditor"),
       image: laziz2Img,
     },
     {
       name: "Jasur Dilmurodov",
-      role: "Frontend Dasturchi",
+      role: t("teamMembers.webdev"),
       image: me_pic,
     },
   ];
@@ -62,25 +62,36 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, index) => (
-            <div key={index} className="group text-center">
-              <div className="relative mb-6 overflow-hidden rounded-3xl aspect-square">
-                <Image
-                  width={70}
-                  height={50}
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-cente gap-8">
+          {teamMembers.map((member, index) => {
+            const noScaleImages = [brandFace2];
+
+            return (
+              <div
+                key={index}
+                className="group text-center flex flex-col items-center"
+              >
+                <div className="relative mb-6 overflow-hidden w-full rounded-3xl h-80">
+                  <Image
+                    width={400}
+                    height={400}
+                    src={member.image}
+                    alt={member.name}
+                    className={`w-full h-full ${
+                      noScaleImages.includes(member.image)
+                        ? "object-cover grayscale transition-all duration-500" // no scale
+                        : "grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110 object-cover"
+                    }`}
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                </div>
+                <h3 className="text-2xl font-bold text-black mb-2">
+                  {member.name}
+                </h3>
+                <p className="text-gray-600">{member.role}</p>
               </div>
-              <h3 className="text-2xl font-bold text-black mb-2">
-                {member.name}
-              </h3>
-              <p className="text-gray-600">{member.role}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

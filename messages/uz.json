@@ -50,7 +50,16 @@
   "team": {
     "title": "Bizning Jamoa",
     "subtitle": "Har bir muvaffaqiyatning orqasida bizning jamoamiz turadi",
-    "role": "Lavozim"
+    "role": "Lavozim",
+    "teamMembers": {
+      "director": "Ijodiy Rahbar",
+      "brandFace": "Brend Yuzi",
+      "model": "Model",
+      "smm": "SMM Mutaxassisi",
+      "scenario": "Ssenariy Yozuvchi",
+      "videoEditor": "Video Montaj ustasi",
+      "webdev": "Frontend Dasturchi"
+    }
   },
   "contact": {
     "title": "Keling, Birgalikda Yarataylik",
@@ -60,20 +69,24 @@
       "email": "Email Manzil",
       "message": "Loyihangiz haqida gapirib bering",
       "send": "Xabar Yuborish",
-      "sending": "Yuborilmoqda...",
-      "success": "Xabar muvaffaqiyatli yuborildi!"
+      "sending": "Yuborilmoqda..."
     },
     "info": {
       "address": "Toshkent, O'zbekiston"
-    },
-    "toastMessages": {
-      "success": "Xabar muvaffaqiyatli yuborildi!",
-      "error": "Xabarni yuborish muvaffaqiyatsiz tugadi.",
-      "validation": "Iltimos, kamida bitta aloqa maydonini to‘ldiring (Email, Telegram yoki telefon)."
     }
   },
   "footer": {
     "tagline": "2024 yildan beri raqamli mukammallikni yaratamiz",
     "rights": "Barcha huquqlar himoyalangan."
+  },
+  "toast": {
+    "errorName": "Iltimos ismingizni kiriting",
+    "errorMessage": "Iltimos xabaringizni kiriting",
+    "success": "Xabar muvaffaqiyatli yuborildi!",
+    "toastMessages": {
+      "success": "Xabar muvaffaqiyatli yuborildi!",
+      "error": "Xabarni yuborish muvaffaqiyatsiz tugadi.",
+      "validation": "Iltimos, kamida bitta aloqa maydonini to‘ldiring (Email, Telegram yoki telefon)."
+    }
   }
 }
