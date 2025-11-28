@@ -21,6 +21,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <link rel="icon" href="/icons/logo_rounded.png" type="image/x-icon" />
+      </head>
+
       <body>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>

@@ -1,1 +1,11 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+.mobile_bg_blur {
+/* From https://css.glass */
+background: rgba(16, 43, 115, 0.83);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(16.9px);
+-webkit-backdrop-filter: blur(16.9px);
+border: 1px solid rgba(16, 43, 115, 0.43);
+}

@@ -19,7 +19,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const [lang, setLang] = useState("uz");
+  // const [lang, setLang] = useState("uz");
 
   const t = useTranslations("nav");
 
@@ -60,7 +60,18 @@ const Header = () => {
     router.refresh();
   };
 
-  console.log("lang", lang);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobileMenuOpen]);
+
+  // console.log("lang", lang);
 
   return (
     <header
@@ -83,7 +94,7 @@ const Header = () => {
           </div>
           <Link
             href="/"
-            className={`font-bold text-sm cursor-pointer xl:text-xl sm:text-lg tracking-tight ${
+            className={`font-bold max-sm:text-lg cursor-pointer xl:text-xl  tracking-tight ${
               isScrolled ? "text-black" : "text-white"
             }`}
           >
@@ -97,7 +108,7 @@ const Header = () => {
             <button
               key={section}
               onClick={() => scrollToSection(section)}
-              className={`text-sm cursor-pointer lg:text-lg font-medium transition-colors duration-300 hover:opacity-70 ${
+              className={`text-sm cursor-pointer max-sm:text-base lg:text-lg font-medium transition-colors duration-300 hover:opacity-70 ${
                 isScrolled ? "text-black" : "text-white"
               }`}
             >
@@ -112,7 +123,7 @@ const Header = () => {
             <PopoverTrigger asChild>
               <button
                 // onChange={(e) => setLang(e)}
-                className={`flex cursor-pointer items-center gap-2 px-3 py-1.5 rounded-full border transition-all ${
+                className={`flex cursor-pointer items-center gap-2 px-3 py-1.5 text-sm rounded-full border transition-all ${
                   isScrolled
                     ? "bg-white text-black border-gray-200 shadow-sm"
                     : "bg-white/10 text-white border-white/20 backdrop-blur"
@@ -120,7 +131,9 @@ const Header = () => {
               >
                 {(() => {
                   const active = langOptions.find((l) => l.code === locale);
-                  return active ? <active.Flag className="w-4 h-4" /> : null;
+                  return active ? (
+                    <active.Flag className="max-sm:w-4 max-sm:h-3 w-4 h-4" />
+                  ) : null;
                 })()}
                 {locale.toUpperCase()}
                 <ChevronDown size={14} />
@@ -158,18 +171,24 @@ const Header = () => {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg">
-          <nav className="container mx-auto px-6 py-6 flex flex-col space-y-4">
-            {["services", "work", "team", "contact"].map((section) => (
-              <button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className="text-left cursor-pointer text-lg font-medium text-black hover:text-gray-600 transition-colors"
-              >
-                {t(section)}
-              </button>
-            ))}
-          </nav>
+        <div>
+          <div
+            className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-lg transition-all duration-300
+    ${isScrolled ? "bg-black/90 " : "bg-white/5"}
+  `}
+          >
+            <nav className="container mx-auto px-6 py-6 flex flex-col space-y-4">
+              {["services", "work", "team", "contact"].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className="text-center cursor-pointer text-lg font-medium text-white hover:text-gray-600 transition-colors"
+                >
+                  {t(section)}
+                </button>
+              ))}
+            </nav>
+          </div>
         </div>
       )}
     </header>
